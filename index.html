@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accès Films & Séries – 2 000 FCFA</title>
+  <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+
+  <style>
+    :root{
+      --bg:#0c0a1e;
+      --card:#141235;
+      --accent:#ff6a00;
+      --text:#f3f4f6;
+      --muted:#a9acc4;
+      --btn:#e7671a;
+      --btn-text:#fff;
+    }
+    body{
+      margin:0; padding:20px;
+      background: radial-gradient(1200px 600px at 70% -10%, #2a1f66 0%, #15123a 45%, var(--bg) 100%) fixed;
+      color:var(--text); font-family: system-ui, Arial, sans-serif;
+    }
+    .container{max-width:720px; margin:0 auto}
+    .card{
+      background:linear-gradient(180deg, #161448 0%, var(--card) 60%, #110f2c 100%);
+      border-radius:18px; overflow:hidden; box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .hero{
+      position:relative; padding:22px; min-height:260px;
+      display:flex; gap:22px; align-items:flex-end;
+    }
+    .badge{
+      position:absolute; top:16px; left:16px;
+      background:rgba(39,29,92,.85); color:#dbeafe;
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 12px; border-radius:12px; font-size:13px;
+      backdrop-filter: blur(6px);
+    }
+    .platforms{
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .platform{
+      display:flex; align-items:center; gap:10px;
+      font-size:20px; font-weight:700;
+    }
+    .platform img{
+      width:34px; height:auto; border-radius:6px;
+    }
+    .subtitle{ font-size:18px; color:#ffeaa7; font-weight:700; margin-top:10px; }
+    .phone{ margin-left:auto; width:180px; height:230px; border-radius:24px;
+      background:linear-gradient(145deg, #0f0d28, #1c1a44);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 0 0 6px #0d0b22, 0 12px 30px rgba(0,0,0,.4);
+      position:relative; overflow:hidden;
+    }
+    .grid{ position:absolute; inset:16px; display:grid;
+      grid-template-columns: repeat(4, 1fr); gap:6px; opacity:.9; }
+    .grid span{ display:block; border-radius:6px; height:28px;
+      background:linear-gradient(180deg, #ffd699, #ff9f43); opacity:.8; }
+    .content{ padding:18px 18px 22px; }
+    .desc{ font-size:16px; color:#e5e7eb; margin:0 0 10px 0; }
+    .meta{ display:flex; align-items:center; gap:12px; color:var(--muted); font-size:14px;
+      margin-bottom:14px; }
+    .price{ font-size:26px; font-weight:900; margin:6px 0 16px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:100%; padding:16px 18px; font-weight:800; font-size:16px;
+      border:none; border-radius:14px; cursor:pointer;
+      background:linear-gradient(180deg, var(--btn), #d1550d);
+      color:var(--btn-text); box-shadow: 0 10px 20px rgba(255,106,0,.25);
+    }
+    .footer-note{ text-align:center; color:var(--muted); font-size:12px; margin-top:12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="hero">
+        <div class="badge">FILMS • SERIE • ANNIME</div>
+        <div class="platforms">
+          <div class="platform">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+            Netflix
+          </div>
+          <div class="platform">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png" alt="Prime Video">
+            Prime Video
+          </div>
+          <div class="platform">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
+            Disney+
+          </div>
+          
+          <div class="subtitle">Obtenez l'Abonnements Premiums à vie</div>
+        </div>
+        <div class="phone" aria-hidden="true">
+          <div class="grid">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <p class="desc">
+          Profite de Netflix, Prime Video, Disney+, Crunchyroll et Platmund+ <strong>A seulement 2500f cfa</strong>.
+        </p>
+        <div class="meta">
+          <span>👍 17% (3 avis)</span><span>•</span>
+          <span>Films indépendants • Séries originales • Animés en illimité</span>
+        </div>
+        <div class="price">2 500&nbsp;FCFA</div>
+        <button id="acheter" class="btn">Acheter maintenant</button>
+        <div class="footer-note">Paiement sécurisé via FedaPay – XOF (FCFA).</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const widget = FedaPay.init({
+    public_key: 'pk_live_McGxiTj5lNJ7MPzCb_qDx-lW',
+    environment: 'live',
+    locale: 'fr',
+    transaction: {
+      amount: 2500,
+      description: 'Accès application streaming – Offre unique',
+    },
+    onComplete: function ({ reason, transaction }) {
+      if (reason === FedaPay.CHECKOUT_COMPLETED) {
+        // Redirection vers paiement.html après paiement réussi
+        window.location.href = 'paiement.html';
+      }
+    }
+  });
+
+  document.getElementById('acheter').addEventListener('click', () => {
+    widget.open();
+  });
+</script>
+
+
+        <p><strong> Copyright@.2025.Abonnement Premium. A vie </strong></p>
+
+</body>
+</html>
